@@ -177,6 +177,14 @@ api:
     value: "1000"
   imagePullSecrets: []
 
+  # Init containers for api deployment
+  # Example:
+  # initContainers:
+  #   - name: init-myservice
+  #     image: busybox:1.28
+  #     command: ['sh', '-c', 'echo The app is running! && sleep 10']
+  initContainers: []
+
   podAnnotations: {}
 
   podSecurityContext: {}
@@ -390,6 +398,21 @@ sandbox:
 
   containerPort: 8194
 
+  # volumes and volumeMounts for sandbox
+  volumes: []
+  # Example:
+  # - name: my-volume
+  #   emptyDir: {}
+  # - name: my-config
+  #   configMap:
+  #     name: my-config
+
+  volumeMounts: []
+  # Example:
+  # - name: my-volume
+  #   mountPath: /data
+  # - name: my-config
+  #   mountPath: /config
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
