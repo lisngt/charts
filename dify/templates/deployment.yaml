@@ -70,9 +70,9 @@ spec:
               value: {{ .Values.sandbox.apiKey | quote }}
             {{- else }}
             {{- end }}
-          {{- with .Values.volumeMounts }}
+          {{- with .Values.api.volumeMounts }}
           volumeMounts:
-          {{- toYaml . | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           ports:
             - name: http
@@ -88,7 +88,7 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.api.resources | nindent 12 }}
-      {{- with .Values.volumes }}
+      {{- with .Values.api.volumes }}
       volumes:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -163,9 +163,9 @@ spec:
             {{- with .Values.worker.envs }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
-          {{- with .Values.volumeMounts }}
+          {{- with .Values.worker.volumeMounts }}
           volumeMounts:
-          {{- toYaml . | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.worker.livenessProbe }}
           livenessProbe:
@@ -177,9 +177,9 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.worker.resources | nindent 12 }}
-      {{- with .Values.volumes }}
+      {{- with .Values.worker.volumes }}
       volumes:
-      {{- toYaml . | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.worker.nodeSelector }}
       nodeSelector:
@@ -251,9 +251,9 @@ spec:
             {{- with .Values.workerBeat.envs }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
-          {{- with .Values.volumeMounts }}
+          {{- with .Values.workerBeat.volumeMounts }}
           volumeMounts:
-          {{- toYaml . | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.workerBeat.livenessProbe }}
           livenessProbe:
@@ -265,9 +265,9 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.workerBeat.resources | nindent 12 }}
-      {{- with .Values.volumes }}
+      {{- with .Values.workerBeat.volumes }}
       volumes:
-      {{- toYaml . | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.workerBeat.nodeSelector }}
       nodeSelector:

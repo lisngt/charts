@@ -3,11 +3,6 @@
 # Declare variables to be passed into your templates.
 
 
-# volume and volumeMounts would be injected to api and worker
-volumes: []
-
-volumeMounts: []
-
 nameOverride: ""
 fullnameOverride: ""
 
@@ -204,6 +199,22 @@ api:
 
   containerPort: 5001
 
+  # volumes and volumeMounts for api (prefer these over top-level values)
+  volumes: []
+  # Example:
+  # - name: my-volume
+  #   emptyDir: {}
+  # - name: my-config
+  #   configMap:
+  #     name: my-config
+
+  volumeMounts: []
+  # Example:
+  # - name: my-volume
+  #   mountPath: /data
+  # - name: my-config
+  #   mountPath: /config
+
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -275,6 +286,22 @@ worker:
   # Add envs here for worker specific environment variables
   envs: []
 
+  # volumes and volumeMounts for worker
+  volumes: []
+  # Example:
+  # - name: my-volume
+  #   emptyDir: {}
+  # - name: my-config
+  #   configMap:
+  #     name: my-config
+
+  volumeMounts: []
+  # Example:
+  # - name: my-volume
+  #   mountPath: /data
+  # - name: my-config
+  #   mountPath: /config
+
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -332,6 +359,22 @@ workerBeat:
 
   # Add envs here for worker_beat specific environment variables
   envs: []
+
+  # volumes and volumeMounts for worker_beat
+  volumes: []
+  # Example:
+  # - name: my-volume
+  #   emptyDir: {}
+  # - name: my-config
+  #   configMap:
+  #     name: my-config
+
+  volumeMounts: []
+  # Example:
+  # - name: my-volume
+  #   mountPath: /data
+  # - name: my-config
+  #   mountPath: /config
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
