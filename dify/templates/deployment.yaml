@@ -501,6 +501,10 @@ spec:
       serviceAccountName: {{ include "dify.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.pluginDaemon.podSecurityContext | nindent 8 }}
+      {{- with .Values.pluginDaemon.initContainers }}
+      initContainers:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}-plugin-daemon
           securityContext:
@@ -546,6 +550,9 @@ spec:
           volumeMounts:
             - name: plugin-daemon-storage
               mountPath: /app/storage
+            {{- with .Values.pluginDaemon.volumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.pluginDaemon.containerPort }}
@@ -560,6 +567,9 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
+        {{- with .Values.pluginDaemon.volumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       {{- with .Values.pluginDaemon.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

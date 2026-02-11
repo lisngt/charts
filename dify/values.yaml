@@ -500,6 +500,22 @@ pluginDaemon:
 
   containerPort: 5002
 
+  initContainers: []
+  # Example:
+  # - name: init-myservice
+  #   image: busybox:1.28
+  #   command: ['sh', '-c', 'echo Initializing']
+
+  volumeMounts: []
+  # Example:
+  # - name: custom-volume
+  #   mountPath: /custom/path
+
+  volumes: []
+  # Example:
+  # - name: custom-volume
+  #   emptyDir: {}
+
   persistence:
     enabled: true
     # 使用默认的 storageClass，如果需要指定其他 storageClass，取消下面的注释并修改值
